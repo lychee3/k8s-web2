@@ -8,7 +8,7 @@ POSTで受け付けたJSONをMySQLに格納し、GETでMySQLからJSONで取得�
 
 ![外観](./docs/images/overview.png)
 
-## インストール方法
+## インストール手順
 (1)Dockerイメージ作成
 ```
 $ make build
@@ -32,7 +32,7 @@ $ kubectl apply -f k8s/db-pv-hostpath.yaml
 $ make deploy
 ```
 
-## アンインストール方法
+## アンインストール手順
 ```
 $ make clean
 $ kubectl delete -f k8s/db-pv-hostpath.yaml
@@ -48,7 +48,7 @@ $ curl localhost:8080/api/fairies
 $ curl -X POST -H "Content-Type: application/json" -d '{"name":"パピィ", "instrument":"鈴", "sweets":"キャンディ"}' localhost:8080/api/fairies
 ```
 
-## Pod上のMySQLに接続する方法
+## MySQL接続手順
 
 ```
 $ kubectl exec -it node-sample-db-xxxxxxxxxxxxxxx /bin/sh

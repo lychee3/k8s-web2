@@ -1,12 +1,12 @@
 .PHONY: build clean deploy
 
 build:
-	docker build --no-cache -t lychee3/node-sample-db:1.0 db
-	docker build --no-cache -t lychee3/node-sample-ap:1.0 ap	
+	docker build --no-cache -t lychee3/k8s-web2-db:1.0 db
+	docker build --no-cache -t lychee3/k8s-web2-ap:1.0 ap	
 
 unbuild:
-	docker rmi lychee3/node-sample-db:1.0
-	docker rmi lychee3/node-sample-ap:1.0
+	docker rmi lychee3/k8s-web2-db:1.0
+	docker rmi lychee3/k8s-web2-ap:1.0
 
 deploy:
 	kubectl apply -f k8s/db-deployment.yaml 
