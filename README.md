@@ -1,25 +1,43 @@
 # k8s-web2
 
 Web2階層サンプルです。
+POSTで受け付けたJSONをMySQLに格納し、GETでMySQLからJSONで取得します。
 
 * フロントエンド(AP)：Node.js
 * バックエンド(DB)：MySQL
 
 ![外観](./docs/images/overview.png)
 
-## デプロイ方法
-### Dockerイメージ作成
+## インストール方法
+### (1)Dockerイメージ作成
 ```
 $ make build
 ```
-### Pod生成
+
+### (2)Secretの作成
+```
+$ vi k8s/db-secret.yaml
+⇒dbuserとrootのパスワード(base64エンコードしたパスワード)を記入する。
+
+$ kubectl apply -f k8s/db-secret.yaml
+```
+
+### (3)PVの作成
+```
+$ kubectl apply -f k8s/db-pv-hostpath.yaml
+```
+
+### (4)Pod生成
 ```
 $ make deploy
 ```
-## PodとDockerイメージの削除方法
+## アンインストール方法
 ```
 $ make clean
+$ kubectl delete -f k8s/db-pv-hostpath.yaml
+$ kubectl delete -f k8s/db-secret.yaml
 ```
+
 
 ## 動作確認用コマンド
 
