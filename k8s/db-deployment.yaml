@@ -28,8 +28,6 @@ spec:
   selector:
     matchLabels:
       app: k8s-web2-db
-  strategy:
-    type: Recreate
   template:
     metadata:
       labels:
