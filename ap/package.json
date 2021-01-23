@@ -1,5 +1,5 @@
 {
-    "name": "sample-node-app",
+    "name": "k8s-web2",
     "version": "1.0.0",
     "description": "Sample Node.js App",
     "main": "index.js",
