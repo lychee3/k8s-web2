@@ -38,19 +38,16 @@ spec:
         name: k8s-web2-db
         env:
         - name: MYSQL_ROOT_PASSWORD
-          # value: mysql
           valueFrom:
             secretKeyRef:
               name: k8s-web2-secret
               key: root_password
         - name: MYSQL_USER
-          # value: koa
           valueFrom:
             secretKeyRef:
               name: k8s-web2-secret
               key: user
         - name: MYSQL_PASSWORD
-          # value: koa
           valueFrom:
             secretKeyRef:
               name: k8s-web2-secret
