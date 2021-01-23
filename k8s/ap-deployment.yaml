@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-sample-ap
+spec:
+  type: LoadBalancer
+  selector:
+    app: node-sample-ap
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-sample-ap
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: node-sample-ap
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: node-sample-ap
+    spec:
+      containers:
+      - image: lychee3/node-sample-ap:1.0
+        name: node-sample-ap
+        env:
+        - name: DB_HOST
+          value: node-sample-db
+        - name: DB_PORT
+          value: "3306"
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: node-sample-secret
+              key: user
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: node-sample-secret
+              key: password
+        - name: DB_DATABASE
+          value: mirumo-db
+        ports:
+        - containerPort: 3000
+          name: node-sample-ap
